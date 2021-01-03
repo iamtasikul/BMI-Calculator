@@ -5,6 +5,8 @@ import 'icon_content.dart';
 import 'reusable_card.dart';
 import 'constants.dart';
 import 'result_page.dart';
+import 'bottom_button.dart';
+import 'round_icon_button.dart';
 
 enum Gender {
   male,
@@ -133,7 +135,7 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         RoundIconButton(
                           icon: FontAwesomeIcons.minus,
-                          onPressed:(){
+                          onPressed: () {
                             setState(() {
                               weight--;
                             });
@@ -144,7 +146,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         RoundIconButton(
                           icon: FontAwesomeIcons.plus,
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
                               weight++;
                             });
@@ -174,7 +176,7 @@ class _InputPageState extends State<InputPage> {
                       children: [
                         RoundIconButton(
                           icon: FontAwesomeIcons.minus,
-                          onPressed:(){
+                          onPressed: () {
                             setState(() {
                               age--;
                             });
@@ -185,7 +187,7 @@ class _InputPageState extends State<InputPage> {
                         ),
                         RoundIconButton(
                           icon: FontAwesomeIcons.plus,
-                          onPressed: (){
+                          onPressed: () {
                             setState(() {
                               age++;
                             });
@@ -198,42 +200,19 @@ class _InputPageState extends State<InputPage> {
               )),
             ],
           )),
-          GestureDetector(
-            onTap: (){
-              Navigator.push(context,MaterialPageRoute(builder: (context) => ResultPage()),);
-            },
-            child: Container(
-              child: Center(child: Text('CALCULATE',style: kLargeButtonTextStyle,)),
-              color: kBottomContainerColor,
-              margin: EdgeInsets.only(top: 10.0),
-              width: double.infinity,
-              height: kBottomContainerHeight,
-            ),
-          )
+          BottomButton(buttonTitle: 'CALCULATE',onTap: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => ResultPage()),
+            );
+          },
+          ),
         ],
       ),
     );
   }
 }
 
-class RoundIconButton extends StatelessWidget {
-  RoundIconButton({@required this.icon, @required this.onPressed});
 
-  final IconData icon;
-  final Function onPressed;
 
-  @override
-  Widget build(BuildContext context) {
-    return RawMaterialButton(
-      child: Icon(icon),
-      onPressed: onPressed,
-      constraints: BoxConstraints.tightFor(
-        width: 56.0,
-        height: 56.0,
-      ),
-      shape: CircleBorder(),
-      fillColor: Color(0xFF4C4F5E),
-      elevation: 6.0,
-    );
-  }
-}
+
